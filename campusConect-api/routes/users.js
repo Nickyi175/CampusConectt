@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+//aqui manejo rutas 
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+var router = require('express').Router();//este me ayuda a manejar las rutas 
+// (get, habuilitar, eliminar,entre otras cosas)
+var usersCtrl = require('../controllers/users.js');//importo el controlador de users
 
-module.exports = router;
+router.post('/new', usersCtrl.createNewUser);//ruta para crear un usuario
+
+module.exports = router;//creacion de modulo para poder exportar las rutas
