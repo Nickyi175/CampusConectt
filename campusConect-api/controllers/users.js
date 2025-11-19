@@ -36,4 +36,22 @@ const createNewUser = async (request, response) => {
     }
 };
 
-module.exports = { createNewUser };
+const getAllUsers = async (request, response) => {
+                try {
+                    const users = await Usuario.findAll();
+                    return response.status(200).json({
+                        status: 'success',
+                        data: users,
+                    });
+                } catch (error) {
+                    return response.status(500).json({
+                        status: 'Error',
+                        message: error.message,
+                    });
+                }
+            };
+
+module.exports = { createNewUser, 
+                    getAllUsers,
+
+};
