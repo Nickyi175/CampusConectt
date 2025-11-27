@@ -32,15 +32,15 @@ const createNewPublicacion = async (request, response) => {
     }
 };
 
-const getAllPublicaciones = async (request, response) => {
+const getAllPublicaciones = async (req, res) => {
     try {
         const publicaciones = await Publicacion.findAll();
-        return response.status(200).json({
+        return res.status(200).json({
             status: 'success',
             data: publicaciones
         });
     } catch (error) {
-        return response.status(500).json({
+        return res.status(500).json({
             status: 'Error',
             message: error.message
         });
