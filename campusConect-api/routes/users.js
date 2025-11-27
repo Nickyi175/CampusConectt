@@ -1,44 +1,43 @@
 /**
  * @swagger
  * components:
- *  schemas:
- *      usuarios:
- *          type: object
- *          required:
- *            - id
- *            - nombre
- *            - correo
- *            - password
- *            - carrera
- *            - foto
- *          properties:
- *            id:
- *              type: integer
- *              description: The auto-generated id of the usuarios
- *            nombre:
- *              type: string
- *              description: Nombre de usuarios
- *            correo:
- *              type: string
- *              description: Correo de usuarios
- *            password:
- *              type: string
- *              description: Contraseña segura del usuario
- *            carrera:
- *              type: string
- *              description: Carrera de usuarios
- *            foto:
- *              type: string
- *              description: Foto del usuario
- * 
- * 
+ *   schemas:
+ *     usuarios:
+ *       type: object
+ *       required:
+ *         - id
+ *         - nombre
+ *         - correo
+ *         - password
+ *         - carrera
+ *         - foto 
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: ID unico autogenerado 
+ *         nombre:
+ *           type: string
+ *           description: Nombre de usuarios
+ *         correo:
+ *           type: string
+ *           description: Correo de usuarios
+ *         password:
+ *           type: string
+ *           description: Contraseña segura del usuario
+ *         carrera:
+ *           type: string
+ *           description: Carrera de usuarios
+ *         foto:
+ *           type: string
+ *           description: Foto del usuario
  */
+
 /**
  * @swagger
  * tags:
- *   name: usuarios
- *   description: Endpoints del módulo de usuarios
- *
+ *   - name: usuarios
+ *     description: Los API-endpoints del Usuario
+ * 
  * /users/new:
  *   post:
  *     summary: Crear un nuevo usuario
@@ -71,10 +70,23 @@
  *               - password
  *               - carrera
  *               - foto
- *
  *     responses:
  *       201:
- *         description: Usuario creado con éxito.
+ *         description: Usuario creado con exito.
+ *         content: 
+ *           application/json:
+ *             schema: 
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *               data: 
+ *                   type: array
+ *                   items: 
+ *                     $ref: '#/components/schemas/usuarios'
+ * 
+ *       400:
+ *         description: Error en la creacion del usuario.
  *         content:
  *           application/json:
  *             schema:
@@ -82,10 +94,33 @@
  *               properties:
  *                 status:
  *                   type: string
- *                 data:
- *                   type: array
- *                   items:
- *                     $ref: '#/components/schemas/usuarios'
+ *                 message:
+ *                   type: string
+ * 
+ *       409:
+ *         description: Correo ya existe.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 message:
+ *                   type: string
+ *
+ *       500:
+ *         description: Error del servidor.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 message:
+ *                   type: string
+ * 
  */
 
 

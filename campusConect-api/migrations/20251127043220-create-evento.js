@@ -2,26 +2,36 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Usuarios', {
+    await queryInterface.createTable('Eventos', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
+      tipo_evento: {
         type: Sequelize.STRING
       },
-      correo: {
+      id_usuario: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Usuarios', 
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      titulo: {
         type: Sequelize.STRING
       },
-      password: {
-        type: Sequelize.STRING
+      descripcion: {
+        type: Sequelize.TEXT
       },
-      carrera: {
-        type: Sequelize.STRING
+      fecha: {
+        type: Sequelize.DATE
       },
-      foto: {
+      lugar: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -35,6 +45,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Usuarios');
+    await queryInterface.dropTable('Eventos');
   }
 };
