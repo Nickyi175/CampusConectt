@@ -46,6 +46,9 @@ const options = {
 const specs = swaggerJsDoc(options);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(specs));
 
+const publicacionesRouter = require('./routes/publicaciones');
+app.use('/api/publicaciones', publicacionesRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

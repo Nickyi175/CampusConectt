@@ -5,10 +5,8 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Publicacion extends Model {
     static associate(models) {
-      // Cada publicación pertenece a 1 usuario
-      Publicacion.belongsTo(models.Usuario, {
-        foreignKey: 'id_usuario'
-      });
+      this.belongsTo(models.Usuario, { foreignKey: 'id_usuario' });
+      this.hasMany(models.Comentario, { foreignKey: 'id_publicacion' });
     }
   }
   Publicacion.init({
